@@ -1,5 +1,3 @@
-#include <float.h>   /* DBL_MAX_10_EXP */
-#include <stdbool.h>
 #include "Python.h"
 #include "Python-ast.h"
 

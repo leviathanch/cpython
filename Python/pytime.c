@@ -873,6 +873,7 @@ pymonotonic(_PyTime_t *tp, _Py_clock_info_t *info, int raise)
         info->adjustable = 0;
     }
 
+#elif defined(__IBMC__)
 #else
     struct timespec ts;
 #ifdef CLOCK_HIGHRES

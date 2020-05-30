@@ -320,7 +320,7 @@ PyThread_get_thread_ident(void)
     if (!initialized)
         PyThread_init_thread();
     threadid = pthread_self();
-    return (unsigned long) threadid;
+    return *((unsigned long*)&threadid);
 }
 
 #ifdef PY_HAVE_THREAD_NATIVE_ID

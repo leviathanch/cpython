@@ -32,7 +32,9 @@
 #include <errno.h>
 #endif
 #include <stdlib.h>
-#ifndef MS_WINDOWS
+#include <stdbool.h>
+#include <float.h>   /* DBL_MAX_10_EXP */
+#if !defined(MS_WINDOWS) && defined(HAVE_UNISTD_H)
 #include <unistd.h>
 #endif
 #ifdef HAVE_CRYPT_H

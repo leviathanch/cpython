@@ -539,6 +539,26 @@ case $ac_sys_system/$ac_sys_release in
     define_xopen_source=no
     ;;
 
+  # IBM z/OS doesn't support 200809L, only 1/2/200112L
+  # so we set _POSIX_C_SOURCE to 200112L here
+  # on z/OS it has to be _POSIX1_SOURCE not _POSIX_1_SOURCE
+  OS/390/*)
+    define_xopen_source=no
+    ax_cv_c_float_words_bigendian=yes
+    posix_threads=yes
+    $as_echo "#define _POSIX_SOURCE 1" >>confdefs.h
+    $as_echo "#define _POSIX1_SOURCE 2" >>confdefs.h
+    $as_echo "#define _POSIX_C_SOURCE 200112L" >>confdefs.h
+    $as_echo "#define _XOPEN_SOURCE 600" >>confdefs.h
+    $as_echo "#define _XOPEN_SOURCE_EXTENDED 1" >>confdefs.h
+    # put it into pyconfig.h
+    AC_DEFINE(_POSIX_SOURCE, 1, "Define to 1 if you need to in order for `stat' and other things to work")
+    AC_DEFINE(_POSIX1_SOURCE, 2, "Posix source level for z/OS")
+    AC_DEFINE(_POSIX_C_SOURCE, 200112L, Define to activate features from IEEE Stds 1003.1-2008)
+    AC_DEFINE(_XOPEN_SOURCE, 600, Define to the level of X/Open that your system supports)
+    AC_DEFINE(_XOPEN_SOURCE_EXTENDED, 1, Define to activate Unix95-and-earlier features)
+    ;;
+
 esac
 
 if test $define_xopen_source = yes

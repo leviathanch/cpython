@@ -1244,7 +1244,7 @@ signal_pthread_kill_impl(PyObject *module, unsigned long thread_id,
         return NULL;
     }
 
-    err = pthread_kill((pthread_t)thread_id, signalnum);
+    err = pthread_kill(*((pthread_t*)&thread_id), signalnum);
     if (err != 0) {
         errno = err;
         PyErr_SetFromErrno(PyExc_OSError);
